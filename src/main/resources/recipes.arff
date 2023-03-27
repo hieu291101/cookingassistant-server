@@ -1,0 +1,19 @@
+@relation Recipes
+
+@attribute milk {0,1}
+@attribute flour {0,1}
+@attribute eggs {0,1}
+@attribute sugar {0,1}
+@attribute butter {0,1}
+@attribute salt {0,1}
+@attribute bakingPowder {0,1}
+@attribute vanilla {0,1}
+@attribute cookingTime real
+@attribute recipe {chocolate_cake, apple_pie, lasagna, chicken_parmesan, spaghetti_carbonara}
+
+@data
+1,0,1,1,1,0,1,1,45,chocolate_cake
+1,1,1,1,0,0,1,0,60,apple_pie
+0,1,1,0,1,1,0,0,90,lasagna
+0,1,1,1,1,1,0,0,30,chicken_parmesan
+0,1,1,0,1,1,1,0,30,spaghetti_carbonara

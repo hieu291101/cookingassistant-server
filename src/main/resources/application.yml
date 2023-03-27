@@ -1,0 +1,103 @@
+
+spring:
+  application:
+    name: SpringBootOAuth
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cooking_assistant
+    username: root
+    password: tinhyeulathe1
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: 1951052054hieu@ou.edu.vn
+    password: tinhyeulathe1
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 849836027965-k0sl0aqg7e0hmmklhfhi4b117b96m99p.apps.googleusercontent.com
+            clientSecret: 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
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: 668423807968600
+            clientSecret: 4dd18a618756754ab07db5ccbeb465d8
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}" # Note that facebook now mandates the use of https redirect URIs, so make sure your app supports https in production
+            scope:
+              - email
+              - public_profile
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+support:
+  email: latrunghieuvt1@gmail.com
+  
+springfox:
+  documentation:
+    swagger-ui:
+      baseUrl: scheduler-service
+
+app:
+  auth:
+    tokenSecret: 04ca023b39512e46d0c2cf4b48d5aac61d34302994c87ed4eff225dcf3b0a218739f3897051a057f9b846a69ea2927a587044164b7bae5e1306219d50b588cb1
+    tokenExpirationMsec: 864000000
+  cors:
+    allowedOrigins: http://localhost:3001 # Comma separated list of allowed origins
+  oauth2:
+    # After successfully authenticating with the OAuth2 Provider,
+    # we'll be generating an auth token for the user and sending the token to the
+    # redirectUri mentioned by the client in the /oauth2/authorize request.
+    # We're not using cookies because they won't work well in mobile clients.
+    authorizedRedirectUris:
+      - http://localhost:3001/oauth2/redirect
+      - myandroidapp://oauth2/redirect
+      - myiosapp://oauth2/redirect
+
+# App Properties
+lth:
+  app:
+    jwtSecret: bezKoderSecretKey
+    jwtExpirationMs: 3600000
+    jwtRefreshExpirationMs: 3600000
+    jwtCookieName: lth-jwt
+    jwtRefreshCookieName: lth-jwt-refresh
+    ## For test
+#    jwtExpirationMs: 60000
+#    jwtRefreshExpirationMs: 120000
+
+#server:
+#  port: 8080
+#security:
+#  oauth2:
+#    client:
+#      clientId: 668423807968600
+#      clientSecret: 4dd18a618756754ab07db5ccbeb465d8
+#      accessTokenUri: https://graph.facebook.com/oauth/access_token
+#      userAuthorizationUri: https://www.facebook.com/dialog/oauth
+#      tokenName: oauth_token
+#      authenticationScheme: query
+#      clientAuthenticationScheme: form
+#  resource:
+#    userInfoUri: https://graph.facebook.com/me
